@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "instructor")
-public class Instructor
+@Table(name = "section")
+class Section
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,11 +20,11 @@ public class Instructor
     @JsonIgnoreProperties("instructors")
     private List<Course> courses = new ArrayList<>();
 
-    public Instructor()
+    public Section()
     {
     }
 
-    public Instructor(String instructname)
+    public Section(String instructname)
     {
         this.instructname = instructname;
     }

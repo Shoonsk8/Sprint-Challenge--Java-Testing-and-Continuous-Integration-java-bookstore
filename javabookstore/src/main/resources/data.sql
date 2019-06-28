@@ -8,9 +8,9 @@ DELETE
 FROM student;
 
 DELETE
-FROM instructor;
+FROM section;
 
-INSERT INTO instructor (instructid, instructname)
+INSERT INTO section (instructid, instructname)
     VALUES(1, 'Sally'),
           (2, 'Lucy'),
           (3, 'Charlie');

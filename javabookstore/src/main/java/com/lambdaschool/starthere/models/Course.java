@@ -22,7 +22,7 @@ public class Course extends Auditable
     @JoinColumn(name = "instructid")
     @JsonIgnoreProperties("courses")
 //    @JsonView(View.CoursesOnly.class)
-    private Instructor instructor;
+    private Section instructor;
 
     @ManyToMany(mappedBy = "courses")
     @JsonIgnoreProperties("courses")
@@ -38,7 +38,7 @@ public class Course extends Auditable
         this.coursename = coursename;
     }
 
-    public Course(String coursename, Instructor instructor)
+    public Course(String coursename, Section instructor)
     {
         this.coursename = coursename;
         this.instructor = instructor;
@@ -64,12 +64,12 @@ public class Course extends Auditable
         this.coursename = coursename;
     }
 
-    public Instructor getInstructor()
+    public Section getInstructor()
     {
         return instructor;
     }
 
-    public void setInstructor(Instructor instructor)
+    public void setInstructor(Section instructor)
     {
         this.instructor = instructor;
     }
