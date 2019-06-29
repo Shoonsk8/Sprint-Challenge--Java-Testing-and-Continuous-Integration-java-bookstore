@@ -33,15 +33,15 @@ public class BookServiceImpl implements BookService
 
     @Transactional
     @Override
-    public void delete(long id) throws EntityNotFoundException
+    public void delete(long bookid) throws EntityNotFoundException
     {
-        if (bookrepos.findById(id).isPresent())
+        if (bookrepos.findById(bookid).isPresent())
         {
-            bookrepos.deleteBookFromStudbooks(id);
-            bookrepos.deleteById(id);
+            bookrepos.deleteBookFromStudbooks(bookid);
+            bookrepos.deleteById(bookid);
         } else
         {
-            throw new EntityNotFoundException(Long.toString(id));
+            throw new EntityNotFoundException(Long.toString(bookid));
         }
     }
 

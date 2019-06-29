@@ -12,9 +12,9 @@ public interface BookService
     List<Book> findAll();
     List<CountStudentsInBooks> getCountStudentsInBook();
 
-    void delete(long id);
+    void delete(long bookid);
 
-    Book findBookById(long id);
+    Book findBookById(long bookid);
 
     Book save(Book newBook);
 }

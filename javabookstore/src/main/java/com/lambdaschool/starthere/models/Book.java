@@ -16,7 +16,11 @@ public class Book extends Auditable
     private long bookid;
 
 //    @JsonView(View.BooksOnly.class)
-    private String bookname;
+
+    private String title;
+    private String ISBN;
+    private int copy;
+
 
     @ManyToOne
     @JoinColumn(name = "sectionid")
@@ -29,18 +33,58 @@ public class Book extends Auditable
     private List<Student> students = new ArrayList<>();
 
 
-    public Book()
+    public Book() { }
+
+    public Book(String title)
     {
+        this.title = title;
     }
 
-    public Book(String bookname)
+    public Book(String title, Section section)
     {
-        this.bookname = bookname;
+        this.title = title;
+        this.section = section;
     }
 
-    public Book(String bookname, Section section)
-    {
-        this.bookname = bookname;
+    public Book(long bookid, String title, String ISBN, int copy, Section section) {
+        this.bookid=bookid;
+        this.title = title;
+        this.ISBN = ISBN;
+        this.copy = copy;
+        this.section = section;
+    }
+
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getISBN() {
+        return ISBN;
+    }
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
+    public int getCopy() {
+        return copy;
+    }
+
+    public void setCopy(int copy) {
+        this.copy = copy;
+    }
+
+
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
         this.section = section;
     }
 
@@ -54,25 +98,6 @@ public class Book extends Auditable
         this.bookid = bookid;
     }
 
-    public String getBookname()
-    {
-        return bookname;
-    }
-
-    public void setBookname(String bookname)
-    {
-        this.bookname = bookname;
-    }
-
-    public Section getInstructor()
-    {
-        return section;
-    }
-
-    public void setInstructor(Section section)
-    {
-        this.section = section;
-    }
 
     public List<Student> getStudents()
     {
