@@ -3,7 +3,7 @@ package com.lambdaschool.starthere.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.awt.print.Book;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +18,7 @@ class Section{
 
     @OneToMany(mappedBy = "section")
     @JsonIgnoreProperties("sections")
-    private List<Course> books = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 
     public Section()
     {
@@ -49,12 +49,12 @@ class Section{
         this.name = name;
     }
 
-    public List<Course> getBooks()
+    public List<Book> getBooks()
     {
         return books;
     }
 
-    public void setBooks(List<Course> books)
+    public void setBooks(List<Book> books)
     {
         this.books = books;
     }

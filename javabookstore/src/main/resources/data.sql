@@ -1,8 +1,8 @@
 DELETE
-FROM studcourses;
+FROM studbooks;
 
 DELETE
-FROM course;
+FROM book;
 
 DELETE
 FROM student;
@@ -15,7 +15,7 @@ INSERT INTO section (sectionid, name)
           (2, 'Lucy'),
           (3, 'Charlie');
 
-INSERT INTO course (courseid, coursename, sectionid)
+INSERT INTO book (bookid, bookname, sectionid)
 	VALUES (1, 'Data Science', 1),
            (2, 'JavaScript', 1),
            (3, 'Node.js',  1),
@@ -28,7 +28,7 @@ INSERT INTO student (studid, studname)
            (2, 'Julian'),
            (3, 'Mary');
 
-INSERT INTO studcourses (studid, courseid)
+INSERT INTO studbooks (studid, bookid)
     VALUES (1, 1),
            (1, 4),
            (2, 2),

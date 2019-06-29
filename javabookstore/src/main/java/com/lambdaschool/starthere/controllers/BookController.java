@@ -1,8 +1,8 @@
 package com.lambdaschool.starthere.controllers;
 
 
-import com.lambdaschool.starthere.models.Course;
-import com.lambdaschool.starthere.services.CourseService;
+import com.lambdaschool.starthere.models.Book;
+import com.lambdaschool.starthere.services.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,51 +18,51 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/courses")
-public class CourseController
+@RequestMapping(value = "/books")
+public class BookController
 {
 
     private static final Logger logger = LoggerFactory.getLogger(RolesController.class);
     @Autowired
-    private CourseService courseService;
+    private BookService bookService;
 
-    @GetMapping(value = "/courses", produces = {"application/json"})
-    public ResponseEntity<?> listAllCourses(HttpServletRequest request)
+    @GetMapping(value = "/books", produces = {"application/json"})
+    public ResponseEntity<?> listAllBooks(HttpServletRequest request)
     {
         logger.trace(request.getRequestURI() + " accessed");
-        List<Course> myCourses = courseService.findAll();
-        return new ResponseEntity<>(myCourses, HttpStatus.OK);
+        List<Book> myBooks = bookService.findAll();
+        return new ResponseEntity<>(myBooks, HttpStatus.OK);
     }
 
     @GetMapping(value = "/studcount", produces = {"application/json"})
-    public ResponseEntity<?> getCountStudentsInCourses(HttpServletRequest request)
+    public ResponseEntity<?> getCountStudentsInBooks(HttpServletRequest request)
     {
         logger.trace(request.getRequestURI() + " accessed");
-        return new ResponseEntity<>(courseService.getCountStudentsInCourse(), HttpStatus.OK);
+        return new ResponseEntity<>(bookService.getCountStudentsInBook(), HttpStatus.OK);
     }
 
-    @DeleteMapping("/courses/{courseid}")
-    public ResponseEntity<?> deleteCourseById(HttpServletRequest request,@PathVariable long courseid)
+    @DeleteMapping("/books/{bookid}")
+    public ResponseEntity<?> deleteBookById(HttpServletRequest request,@PathVariable long bookid)
     {
         logger.trace(request.getRequestURI() + " accessed");
-        courseService.delete(courseid);
+        bookService.delete(bookid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
     @PostMapping(value = "/add")
-    public ResponseEntity<?> addNewCourse(HttpServletRequest request, @Valid
+    public ResponseEntity<?> addNewBook(HttpServletRequest request, @Valid
     @RequestBody
-            Course newCourse) throws URISyntaxException
+            Book newBook) throws URISyntaxException
     {
         logger.trace(request.getRequestURI() + " accessed");
 
-        newCourse = courseService.save(newCourse);
+        newBook = bookService.save(newBook);
 
         // set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
-        URI newCourseURI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{quoteid}").buildAndExpand(newCourse.getCourseid()).toUri();
-        responseHeaders.setLocation(newCourseURI);
+        URI newBookURI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{quoteid}").buildAndExpand(newBook.getBookid()).toUri();
+        responseHeaders.setLocation(newBookURI);
 
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }

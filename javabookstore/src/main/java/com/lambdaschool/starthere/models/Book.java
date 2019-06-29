@@ -7,61 +7,61 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "course")
-public class Course extends Auditable
+@Table(name = "book")
+public class Book extends Auditable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-//    @JsonView(View.CoursesOnly.class)
-    private long courseid;
+//    @JsonView(View.BooksOnly.class)
+    private long bookid;
 
-//    @JsonView(View.CoursesOnly.class)
-    private String coursename;
+//    @JsonView(View.BooksOnly.class)
+    private String bookname;
 
     @ManyToOne
     @JoinColumn(name = "sectionid")
-    @JsonIgnoreProperties("courses")
-//    @JsonView(View.CoursesOnly.class)
+    @JsonIgnoreProperties("books")
+//    @JsonView(View.BooksOnly.class)
     private Section section;
 
-    @ManyToMany(mappedBy = "courses")
-    @JsonIgnoreProperties("courses")
+    @ManyToMany(mappedBy = "books")
+    @JsonIgnoreProperties("books")
     private List<Student> students = new ArrayList<>();
 
 
-    public Course()
+    public Book()
     {
     }
 
-    public Course(String coursename)
+    public Book(String bookname)
     {
-        this.coursename = coursename;
+        this.bookname = bookname;
     }
 
-    public Course(String coursename, Section section)
+    public Book(String bookname, Section section)
     {
-        this.coursename = coursename;
+        this.bookname = bookname;
         this.section = section;
     }
 
-    public long getCourseid()
+    public long getBookid()
     {
-        return courseid;
+        return bookid;
     }
 
-    public void setCourseid(long courseid)
+    public void setBookid(long bookid)
     {
-        this.courseid = courseid;
+        this.bookid = bookid;
     }
 
-    public String getCoursename()
+    public String getBookname()
     {
-        return coursename;
+        return bookname;
     }
 
-    public void setCoursename(String coursename)
+    public void setBookname(String bookname)
     {
-        this.coursename = coursename;
+        this.bookname = bookname;
     }
 
     public Section getInstructor()

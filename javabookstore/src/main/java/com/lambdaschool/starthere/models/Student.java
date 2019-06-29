@@ -17,11 +17,11 @@ public class Student extends Auditable
     private String studname;
 
     @ManyToMany
-    @JoinTable(name = "studcourses",
+    @JoinTable(name = "studbooks",
                joinColumns = {@JoinColumn(name = "studid")},
-               inverseJoinColumns = {@JoinColumn(name = "courseid")})
+               inverseJoinColumns = {@JoinColumn(name = "bookid")})
     @JsonIgnoreProperties("students")
-    private List<Course> courses = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 
     public Student()
     {
@@ -52,13 +52,13 @@ public class Student extends Auditable
         this.studname = studname;
     }
 
-    public List<Course> getCourses()
+    public List<Book> getBooks()
     {
-        return courses;
+        return books;
     }
 
-    public void setCourses(List<Course> courses)
+    public void setBooks(List<Book> books)
     {
-        this.courses = courses;
+        this.books = books;
     }
 }
