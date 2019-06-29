@@ -21,9 +21,9 @@ public class BookServiceImpl implements BookService
     @Override
     public List<Book> findAll()
     {
-        List<Book> list = new ArrayList<>();
-        bookrepos.findAll().iterator().forEachRemaining(list::add);
-        return list;
+        List<Book> books = new ArrayList<>();
+        bookrepos.findAll().iterator().forEachRemaining(books::add);
+        return books;
     }
     @Override
     public List<CountStudentsInBooks> getCountStudentsInBook()

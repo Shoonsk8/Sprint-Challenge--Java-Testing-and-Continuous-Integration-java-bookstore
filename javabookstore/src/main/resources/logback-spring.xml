@@ -46,32 +46,92 @@
     </appender>
 
 
-    <root level="ERROR">
+<!--    <root level="ERROR">-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--        <appender-ref ref="FILE"/>-->
+<!--    </root>-->
+
+<!--    <logger name="org.apache.catalina" level="ERROR">-->
+<!--        <appender-ref ref="TOMCAT"/>-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--    </logger>-->
+
+<!--    <logger name="org.apache.coyote" level="ERROR">-->
+<!--        <appender-ref ref="TOMCAT"/>-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--    </logger>-->
+
+<!--    <logger name="org.apache.tomcat" level="ERROR">-->
+<!--        <appender-ref ref="TOMCAT"/>-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--    </logger>-->
+
+<!--    <logger name="org.springframework.boot" level="ERROR">-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--    </logger>-->
+
+<!--    <logger name="com.lambdaschool" level="ERROR">-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--    </logger>-->
+
+    <root level="OFF">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
     </root>
 
-    <logger name="org.apache.catalina" level="ERROR">
+    <logger name="org.apache.catalina" level="OFF">
         <appender-ref ref="TOMCAT"/>
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <logger name="org.apache.coyote" level="ERROR">
+    <logger name="org.apache.coyote" level="OFF">
         <appender-ref ref="TOMCAT"/>
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <logger name="org.apache.tomcat" level="ERROR">
+    <logger name="org.apache.tomcat" level="OFF">
         <appender-ref ref="TOMCAT"/>
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <logger name="org.springframework.boot" level="ERROR">
+    <logger name="org.springframework.boot" level="OFF">
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <logger name="com.lambdaschool" level="ERROR">
+<!--    <logger name="com.lambdaschool" level="OFF">-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--    </logger>-->
+
+    <logger name="com.lambdaschool" level="TRACE">
         <appender-ref ref="STDOUT"/>
     </logger>
+
+<!--    <root level="INFO">-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--        <appender-ref ref="FILE"/>-->
+<!--    </root>-->
+
+<!--    <logger name="org.apache.catalina" level="INFO">-->
+<!--        <appender-ref ref="TOMCAT"/>-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--    </logger>-->
+
+<!--    <logger name="org.apache.coyote" level="INFO">-->
+<!--        <appender-ref ref="TOMCAT"/>-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--    </logger>-->
+
+<!--    <logger name="org.apache.tomcat" level="INFO">-->
+<!--        <appender-ref ref="TOMCAT"/>-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--    </logger>-->
+
+<!--    <logger name="org.springframework.boot" level="INFO">-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--    </logger>-->
+
+<!--    <logger name="com.lambdaschool" level="INFO">-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--    </logger>-->
 </configuration>
 

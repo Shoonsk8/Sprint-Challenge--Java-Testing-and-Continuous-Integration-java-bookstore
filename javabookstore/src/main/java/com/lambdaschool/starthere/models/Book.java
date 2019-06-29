@@ -17,9 +17,20 @@ public class Book extends Auditable
 
 //    @JsonView(View.BooksOnly.class)
 
+    @Column( nullable = false)
     private String title;
+
+
+    @Column( nullable = true)
     private String ISBN;
+
+
+
+
+    @Column( nullable = true)
     private int copy;
+
+
 
 
     @ManyToOne

@@ -24,9 +24,9 @@ class Section{
     {
     }
 
-    public Section(String sectionname)
+    public Section(String name)
     {
-        this.name = sectionname;
+        this.name = name;
     }
 
     public long getSectionid()
