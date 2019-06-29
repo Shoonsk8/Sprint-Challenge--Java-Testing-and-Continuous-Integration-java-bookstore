@@ -1,6 +1,7 @@
 package com.lambdaschool.starthere.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.Nullable;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class Book extends Auditable
 
 
     @Column( nullable = true)
-    private int copy;
+    private String  copy;
 
 
 
@@ -57,11 +58,14 @@ public class Book extends Auditable
         this.section = section;
     }
 
-    public Book(long bookid, String title, String ISBN, int copy, Section section) {
+    public Book(long bookid, String title, String ISBN,String  copy, Section section) {
         this.bookid=bookid;
         this.title = title;
         this.ISBN = ISBN;
-        this.copy = copy;
+
+        this.copy=copy;
+
+
         this.section = section;
     }
 
@@ -82,11 +86,11 @@ public class Book extends Auditable
         this.ISBN = ISBN;
     }
 
-    public int getCopy() {
+    public String  getCopy() {
         return copy;
     }
 
-    public void setCopy(int copy) {
+    public void setCopy(String  copy) {
         this.copy = copy;
     }
 

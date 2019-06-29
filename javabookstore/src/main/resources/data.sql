@@ -8,8 +8,8 @@ INSERT INTO section (sectionid, name) VALUES (5, 'Religion');
 INSERT INTO book (bookid, title, ISBN, copy, sectionid) VALUES (1, 'Flatterland', '9780738206752', 2001, 1);
 INSERT INTO book (bookid, title, ISBN, copy, sectionid) VALUES (2, 'Digital Fortess', '9788489367012', 2007, 1);
 INSERT INTO book (bookid, title, ISBN, copy, sectionid) VALUES (3, 'The Da Vinci Code', '9780307474278', 2009, 1);
-INSERT INTO book (bookid, title, ISBN, copy, sectionid) VALUES (4, 'Essentials of Finance', '1314241651234', 0, 4);
--- INSERT INTO book (bookid, title, ISBN, copy, sectionid) VALUES (4, 'Essentials of Finance', '1314241651234', NULL, 4);
+-- INSERT INTO book (bookid, title, ISBN, copy, sectionid) VALUES (4, 'Essentials of Finance', '1314241651234', 0, 4);
+INSERT INTO book (bookid, title, ISBN, copy, sectionid) VALUES (4, 'Essentials of Finance', '1314241651234', NULL, 4);
 INSERT INTO book (bookid, title, ISBN, copy, sectionid) VALUES (5, 'Calling Texas Home', '1885171382134', 2000, 3);
 
 
@@ -21,8 +21,7 @@ INSERT INTO student (studid, studname)
 
 INSERT INTO studbooks (studid, bookid)
     VALUES (1, 1),
-           (1, 2),
-           (2,3);
+           (1, 2);
 
 
 
