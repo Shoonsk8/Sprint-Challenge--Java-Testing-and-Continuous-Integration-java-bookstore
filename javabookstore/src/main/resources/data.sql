@@ -10,12 +10,12 @@ FROM student;
 DELETE
 FROM section;
 
-INSERT INTO section (instructid, instructname)
+INSERT INTO section (sectionid, name)
     VALUES(1, 'Sally'),
           (2, 'Lucy'),
           (3, 'Charlie');
 
-INSERT INTO course (courseid, coursename, instructid)
+INSERT INTO course (courseid, coursename, sectionid)
 	VALUES (1, 'Data Science', 1),
            (2, 'JavaScript', 1),
            (3, 'Node.js',  1),
