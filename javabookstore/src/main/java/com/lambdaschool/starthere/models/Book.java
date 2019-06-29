@@ -42,7 +42,7 @@ public class Book extends Auditable
 
     @ManyToMany(mappedBy = "books")
     @JsonIgnoreProperties("books")
-    private List<Student> students = new ArrayList<>();
+    private List<Author> authors = new ArrayList<>();
 
 
     public Book() { }
@@ -114,13 +114,13 @@ public class Book extends Auditable
     }
 
 
-    public List<Student> getStudents()
+    public List<Author> getAuthors()
     {
-        return students;
+        return authors;
     }
 
-    public void setStudents(List<Student> students)
+    public void setAuthors(List<Author> authors)
     {
-        this.students = students;
+        this.authors = authors;
     }
 }

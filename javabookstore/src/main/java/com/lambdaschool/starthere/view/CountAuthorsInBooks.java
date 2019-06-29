@@ -1,6 +1,6 @@
 package com.lambdaschool.starthere.view;
 
-public interface CountStudentsInBooks
+public interface CountAuthorsInBooks
 {
     long getBookid();
     String getBookname();

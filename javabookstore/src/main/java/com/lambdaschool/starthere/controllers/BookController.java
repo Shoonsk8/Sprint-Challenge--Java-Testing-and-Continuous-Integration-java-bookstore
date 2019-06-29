@@ -35,10 +35,10 @@ public class BookController
     }
 
     @GetMapping(value = "/studcount", produces = {"application/json"})
-    public ResponseEntity<?> getCountStudentsInBooks(HttpServletRequest request)
+    public ResponseEntity<?> getCountAuthorsInBooks(HttpServletRequest request)
     {
         logger.trace(request.getRequestURI() + " accessed");
-        return new ResponseEntity<>(bookService.getCountStudentsInBook(), HttpStatus.OK);
+        return new ResponseEntity<>(bookService.getCountAuthorsInBook(), HttpStatus.OK);
     }
 
     @DeleteMapping("/books/{bookid}")

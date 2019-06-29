@@ -2,7 +2,7 @@ package com.lambdaschool.starthere.repository;
 
 
 import com.lambdaschool.starthere.models.Book;
-import com.lambdaschool.starthere.view.CountStudentsInBooks;
+import com.lambdaschool.starthere.view.CountAuthorsInBooks;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -16,8 +16,8 @@ public interface BookRepository extends CrudRepository<Book, Long>
     @Query(value = "DELETE FROM studbooks WHERE bookid = :bookid", nativeQuery = true)
     void deleteBookFromStudbooks(long bookid);
 
-    @Query(value = "SELECT s.bookid, title, count(studid) as countstudents FROM studbooks s INNER JOIN book c on s.bookid=c.bookid GROUP BY s.bookid, title", nativeQuery = true)
-    List<CountStudentsInBooks> getCountStudentsInBook();
+    @Query(value = "SELECT s.bookid, title, count(studid) as countAuthors FROM studbooks s INNER JOIN book c on s.bookid=c.bookid GROUP BY s.bookid, title", nativeQuery = true)
+    List<CountAuthorsInBooks> getCountAuthorsInBook();
 
     Book getBookByBookid(long bookid);
 

@@ -3,7 +3,7 @@ package com.lambdaschool.starthere.services;
 
 import com.lambdaschool.starthere.models.Book;
 import com.lambdaschool.starthere.repository.BookRepository;
-import com.lambdaschool.starthere.view.CountStudentsInBooks;
+import com.lambdaschool.starthere.view.CountAuthorsInBooks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,9 +26,9 @@ public class BookServiceImpl implements BookService
         return books;
     }
     @Override
-    public List<CountStudentsInBooks> getCountStudentsInBook()
+    public List<CountAuthorsInBooks> getCountAuthorsInBook()
     {
-        return bookrepos.getCountStudentsInBook();
+        return bookrepos.getCountAuthorsInBook();
     }
 
     @Transactional
