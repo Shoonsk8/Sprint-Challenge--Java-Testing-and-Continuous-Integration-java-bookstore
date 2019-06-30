@@ -18,4 +18,6 @@ public interface BookService
     Book findBookById(long bookid);
 
     Book save(Book newBook);
+
+    void update(Book updateBook, long id);
 }

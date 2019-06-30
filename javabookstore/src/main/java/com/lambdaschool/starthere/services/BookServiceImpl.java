@@ -37,7 +37,7 @@ public class BookServiceImpl implements BookService
     {
         if (bookrepos.findById(bookid).isPresent())
         {
-            bookrepos.deleteBookFromStudbooks(bookid);
+            bookrepos.deleteBookFromWrote(bookid);
             bookrepos.deleteById(bookid);
         } else
         {
@@ -53,5 +53,16 @@ public class BookServiceImpl implements BookService
     @Override
     public Book save(Book newBook) {
         return bookrepos.save(newBook);
+    }
+
+    @Override
+    public void update(Book updateBook, long id) {
+        bookrepos.getBookByBookid(id).setTitle(updateBook.getTitle());
+        if(updateBook.getAuthors()!=null)bookrepos.getBookByBookid(id).setAuthors(updateBook.getAuthors());
+        if(updateBook.getCopy()!=null)bookrepos.getBookByBookid(id).setCopy(updateBook.getCopy());
+        if(updateBook.getISBN()!=null)bookrepos.getBookByBookid(id).setISBN(updateBook.getISBN());
+        if(updateBook.getSection()!=null)bookrepos.getBookByBookid(id).setSection(updateBook.getSection());
+
+        bookrepos.save(bookrepos.getBookByBookid(id));
     }
 }
