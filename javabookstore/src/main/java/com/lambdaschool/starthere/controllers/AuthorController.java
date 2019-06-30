@@ -63,49 +63,6 @@ class AuthorController {
 
 
 
-    //DELETE /data/books/{id} - deletes a book and the book author combinations - but does not delete the author records.
-
-    @DeleteMapping("/books/{bookid}")
-    public ResponseEntity<?> deleteBookById(HttpServletRequest request,@PathVariable long bookid)
-    {
-        logger.info(request.getRequestURI() + " accessed");
-        bookService.delete(bookid);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    //PUT /data/books/{id} - updates a books info (Title, Copyright, ISBN) but does NOT have to assign authors to the books.
-
-    @PutMapping(value = "/books/{bookid}", produces = {"application/json"})
-    public ResponseEntity<?> updateUser(HttpServletRequest request,
-    @RequestBody
-            Book updateBook,
-    @PathVariable
-    long bookid)
-    {
-        logger.info(request.getRequestURI() + " accessed");
-
-        bookService.update(updateBook, bookid);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-
-    @PostMapping(value = "/books/authors{id}")
-    public ResponseEntity<?> addNewBook(HttpServletRequest request, @Valid
-@RequestBody
-    Book newBook) throws URISyntaxException
-    {
-        logger.info(request.getRequestURI() + " accessed");
-
-        newBook = bookService.save(newBook);
-
-        // set the location header for the newly created resource
-        HttpHeaders responseHeaders = new HttpHeaders();
-        URI newBookURI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{quoteid}").buildAndExpand(newBook.getBookid()).toUri();
-        responseHeaders.setLocation(newBookURI);
-
-        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
-    }
-
 
 
 }
