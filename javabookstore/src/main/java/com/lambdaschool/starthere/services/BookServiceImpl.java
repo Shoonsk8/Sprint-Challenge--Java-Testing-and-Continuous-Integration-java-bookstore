@@ -3,6 +3,7 @@ package com.lambdaschool.starthere.services;
 
 import com.lambdaschool.starthere.models.Book;
 
+import com.lambdaschool.starthere.repository.AuthorRepository;
 import com.lambdaschool.starthere.repository.BookRepository;
 import com.lambdaschool.starthere.view.CountAuthorsInBooks;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class BookServiceImpl implements BookService
 {
     @Autowired
     private BookRepository bookrepos;
+    @Autowired
+    private AuthorRepository authorrepos;
 
     @Override
     public List<Book> findAll(Pageable pageable)
@@ -53,5 +56,11 @@ public class BookServiceImpl implements BookService
         if(updateBook.getSection()!=null)bookrepos.getBookByBookid(id).setSection(updateBook.getSection());
 
         bookrepos.save(bookrepos.getBookByBookid(id));
+    }
+
+    @Override
+    public void assignAuthor(long bookid, long authorid) {
+        Book currentBook = bookrepos.findById(bookid).orElseThrow(EntityNotFoundException::new);
+        currentBook.getAuthors().add(authorrepos.findById(authorid).orElseThrow(EntityNotFoundException::new));
     }
 }

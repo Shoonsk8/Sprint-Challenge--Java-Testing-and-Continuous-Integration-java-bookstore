@@ -1,6 +1,7 @@
 package com.lambdaschool.starthere.controllers;
 
 
+import com.lambdaschool.starthere.models.Author;
 import com.lambdaschool.starthere.models.Book;
 import com.lambdaschool.starthere.services.AuthorService;
 import com.lambdaschool.starthere.services.BookService;
@@ -23,7 +24,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/books")
 public class BookController
 {
     public BookController() {
@@ -83,6 +83,12 @@ public class BookController
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    //POST /data/books/authors{id} - assigns a book already in the system to an author already in the system (see how roles are handled for users)
+    @PostMapping(value = "/data/books/{id}")
+    public ResponseEntity<?> matchBookWithAuthor(@PathVariable long bookid, @RequestBody Author author){
+        bookService.assignAuthor(bookid, author.getAuthorid());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     @PostMapping(value = "/add")
     public ResponseEntity<?> addNewBook(HttpServletRequest request, @Valid

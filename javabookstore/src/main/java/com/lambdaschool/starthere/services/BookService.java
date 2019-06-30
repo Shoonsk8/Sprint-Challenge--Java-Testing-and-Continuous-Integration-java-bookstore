@@ -19,4 +19,6 @@ public interface BookService
     Book save(Book newBook);
 
     void update(Book updateBook, long id);
+
+    void assignAuthor(long bookid, long authorid);
 }
