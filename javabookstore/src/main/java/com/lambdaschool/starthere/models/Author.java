@@ -1,6 +1,7 @@
 package com.lambdaschool.starthere.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,12 +11,21 @@ import java.util.List;
 @Table(name = "author")
 public class Author extends Auditable
 {
+    @ApiModelProperty(name = "authorid", value = "Primary key for Author", required = true, example = "1")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long authorid;
 
-    private String fname,lname;
+    @ApiModelProperty(name = "fname", value = "First Name", required = true, example = "John")
+    @Column(nullable = false, unique = true)
+    private String fname;
 
+    @ApiModelProperty(name = "lname", value = "Last Name", required = true, example = "Doe")
+    @Column(nullable = false, unique = true)
+    private String lname;
+
+
+    @ApiModelProperty(name = "books", value = "List of Books", required = true, example = "Some Name")
     @ManyToMany
     @JoinTable(name = "wrote",
                joinColumns = {@JoinColumn(name = "authorid")},

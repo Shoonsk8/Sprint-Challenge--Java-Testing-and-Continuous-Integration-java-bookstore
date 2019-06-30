@@ -4,6 +4,10 @@ package com.lambdaschool.starthere.controllers;
 import com.lambdaschool.starthere.models.Book;
 import com.lambdaschool.starthere.services.AuthorService;
 import com.lambdaschool.starthere.services.BookService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.data.domain.Pageable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,43 +26,44 @@ import java.util.List;
 @RequestMapping(value = "/books")
 public class BookController
 {
+    public BookController() {
+    }
 
     private static final Logger logger = LoggerFactory.getLogger(RolesController.class);
     @Autowired
     private BookService bookService;
 
-    @Autowired
-    private AuthorService authorService;
+
+    @ApiOperation(value = "Return all Books", response = Book.class, responseContainer = "List")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "page", dataType = "integr", paramType = "query",
+                    value = "Results page you want to retrieve (0..N)"),
+            @ApiImplicitParam(name = "size", dataType = "integer", paramType = "query",
+                    value = "Number of records per page."),
+            @ApiImplicitParam(name = "sort", allowMultiple = true, dataType = "string", paramType = "query",
+                    value = "Sorting criteria in the format: property(,asc|desc). " +
+                            "Default sort order is ascending. " +
+                            "Multiple sort criteria are supported.")})
+
+
 
     //GET /books - returns a JSON object list of all the books and their authors.
     @GetMapping(value = "/books", produces = {"application/json"})
-    public ResponseEntity<?> listAllBooks(HttpServletRequest request)
+    public ResponseEntity<?> listAllBooks(HttpServletRequest request, Pageable pageable)
     {
-        logger.trace(request.getRequestURI() + " accessed");
-        List<Book> myBooks = bookService.findAll();
+        logger.info(request.getRequestURI() + " accessed");
+        List<Book> myBooks = bookService.findAll(pageable);
         return new ResponseEntity<>(myBooks, HttpStatus.OK);
     }
 
 
-    //GET /authors - returns a JSON object list of all the authors and their books.
-    @GetMapping(value = "/authors", produces = {"application/json"})
-    public ResponseEntity<?> getAllAuthors(HttpServletRequest request)
-    {
-        logger.trace(request.getRequestURI() + " accessed");
-        return new ResponseEntity<>(authorService.findAll(), HttpStatus.OK);
-    }
 
-    @GetMapping(value = "/studcount", produces = {"application/json"})
-    public ResponseEntity<?> getCountAuthorsInBooks(HttpServletRequest request)
-    {
-        logger.trace(request.getRequestURI() + " accessed");
-        return new ResponseEntity<>(bookService.getCountAuthorsInBook(), HttpStatus.OK);
-    }
+
 
     @DeleteMapping("/books/{bookid}")
     public ResponseEntity<?> deleteBookById(HttpServletRequest request,@PathVariable long bookid)
     {
-        logger.trace(request.getRequestURI() + " accessed");
+        logger.info(request.getRequestURI() + " accessed");
         bookService.delete(bookid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -72,7 +77,7 @@ public class BookController
                                         @PathVariable
                                                 long bookid)
     {
-        logger.trace(request.getRequestURI() + " accessed");
+        logger.info(request.getRequestURI() + " accessed");
 
         bookService.update(updateBook, bookid);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -84,7 +89,7 @@ public class BookController
     @RequestBody
             Book newBook) throws URISyntaxException
     {
-        logger.trace(request.getRequestURI() + " accessed");
+        logger.info(request.getRequestURI() + " accessed");
 
         newBook = bookService.save(newBook);
 

@@ -2,13 +2,15 @@ package com.lambdaschool.starthere.services;
 
 
 import com.lambdaschool.starthere.models.Book;
+
 import com.lambdaschool.starthere.repository.BookRepository;
 import com.lambdaschool.starthere.view.CountAuthorsInBooks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.data.domain.Pageable;
 import javax.persistence.EntityNotFoundException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,31 +21,18 @@ public class BookServiceImpl implements BookService
     private BookRepository bookrepos;
 
     @Override
-    public List<Book> findAll()
+    public List<Book> findAll(Pageable pageable)
     {
         List<Book> books = new ArrayList<>();
-        bookrepos.findAll().iterator().forEachRemaining(books::add);
+        bookrepos.findAll(pageable).iterator().forEachRemaining(books::add);
         return books;
     }
+
     @Override
-    public List<CountAuthorsInBooks> getCountAuthorsInBook()
-    {
-        return bookrepos.getCountAuthorsInBook();
+    public void delete(long bookid) {
+
     }
 
-    @Transactional
-    @Override
-    public void delete(long bookid) throws EntityNotFoundException
-    {
-        if (bookrepos.findById(bookid).isPresent())
-        {
-            bookrepos.deleteBookFromWrote(bookid);
-            bookrepos.deleteById(bookid);
-        } else
-        {
-            throw new EntityNotFoundException(Long.toString(bookid));
-        }
-    }
 
     @Override
     public Book findBookById(long bookid) {

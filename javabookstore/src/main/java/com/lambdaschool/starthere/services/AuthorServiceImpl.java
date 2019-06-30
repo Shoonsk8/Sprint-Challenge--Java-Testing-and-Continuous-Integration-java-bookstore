@@ -6,7 +6,7 @@ import com.lambdaschool.starthere.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.data.domain.Pageable;
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +17,10 @@ public class AuthorServiceImpl implements AuthorService {
     private AuthorRepository authorrepos;
 
     @Override
-    public List<Author> findAll()
+    public List<Author> findAll(Pageable pageable)
     {
         List<Author> authors = new ArrayList<>();
-        authorrepos.findAll().iterator().forEachRemaining(authors::add);
-      //  authorrepos.findAll().iterator().forEachRemaining(authors::add);
+        authorrepos.findAll(pageable).iterator().forEachRemaining(authors::add);
         return authors;
     }
 
@@ -29,13 +28,7 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public void delete(long authorid) throws EntityNotFoundException
     {
-        if (authorrepos.findById(authorid).isPresent())
-        {
-            authorrepos.deleteAuthorFromWrote(authorid);
-            authorrepos.deleteById(authorid);
-        } else {
-            throw new EntityNotFoundException(Long.toString(authorid));
-        }
+
     }
 
     @Override
