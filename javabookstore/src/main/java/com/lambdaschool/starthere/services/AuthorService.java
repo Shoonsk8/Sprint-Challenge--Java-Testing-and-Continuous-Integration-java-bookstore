@@ -15,5 +15,5 @@ public interface  AuthorService {
 
     Author findAuthorById(long authorid);
 
-    Author save(Author newAuthor);
+    void save(Author newAuthor);
 }
